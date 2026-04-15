@@ -1,0 +1,44 @@
+{
+  "name": "claude-code-cn",
+  "version": "0.1.0",
+  "description": "Claude Code 中文汉化工具 — 一条命令将 Claude Code CLI 界面翻译为中文",
+  "type": "module",
+  "bin": {
+    "claude-code-cn": "./bin/cli.js"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "dict/",
+    "LICENSE"
+  ],
+  "keywords": [
+    "claude-code",
+    "i18n",
+    "chinese",
+    "localization",
+    "zh-cn",
+    "cli",
+    "anthropic"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhpy2004/claude-code-cn.git"
+  },
+  "homepage": "https://github.com/zhpy2004/claude-code-cn#readme",
+  "bugs": {
+    "url": "https://github.com/zhpy2004/claude-code-cn/issues"
+  },
+  "author": "zhpy",
+  "license": "MIT",
+  "dependencies": {
+    "acorn": "^8.14.0",
+    "acorn-walk": "^8.3.0"
+  }
+}
