@@ -5,7 +5,7 @@ Claude Code 中文汉化工具 — 一条命令将 [Claude Code](https://docs.an
 ## 安装
 
 ```bash
-npm install -g claude-code-cn
+npm install -g @zhpy2004/claude-code-cn
 ```
 
 需要 Node.js >= 18。
