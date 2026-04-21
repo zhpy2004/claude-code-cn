@@ -24,15 +24,21 @@ import { DetectError } from './errors.js';
  */
 function tryResolve(root) {
   const installDir = path.join(root, '@anthropic-ai', 'claude-code');
-  const cliPath = path.join(installDir, 'cli.js');
   const pkgPath = path.join(installDir, 'package.json');
+  const cliPath = path.join(installDir, 'cli.js');
 
-  if (!existsSync(cliPath)) return null;
-  if (!existsSync(pkgPath)) {
-    throw new DetectError('NO_PACKAGE_JSON', 'Claude Code 安装可能已损坏，请重新安装');
-  }
+  if (!existsSync(pkgPath)) return null;
 
   const pkg = JSON.parse(readFileSync(pkgPath, 'utf-8'));
+
+  if (!existsSync(cliPath)) {
+    throw new DetectError(
+      'UNSUPPORTED_VERSION',
+      `检测到 Claude Code v${pkg.version}，但该版本已改为原生二进制架构，不包含可补丁的 JS 源码。\n` +
+      '本工具仅支持 <= v2.1.107。请执行：npm install -g @anthropic-ai/claude-code@2.1.107'
+    );
+  }
+
   return { cliPath, pkgPath, version: pkg.version, installDir };
 }
 

@@ -2,6 +2,16 @@
 
 Claude Code 中文汉化工具 — 一条命令将 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI 界面翻译为中文。
 
+## 兼容性
+
+> **重要：本工具仅支持 Claude Code v2.1.107 及更早版本。**
+>
+> 从 v2.1.108 起，Anthropic 将 Claude Code 从 JavaScript 架构改为原生二进制文件（`.exe` / ELF），不再包含可补丁的 JS 源码。本工具的 AST 补丁方案无法作用于二进制文件，因此需要指定安装兼容版本：
+>
+> ```bash
+> npm install -g @anthropic-ai/claude-code@2.1.107
+> ```
+
 ## 安装
 
 ```bash
@@ -13,14 +23,14 @@ npm install -g @zhpy2004/claude-code-cn
 ## 使用
 
 ```bash
+# 先确保 Claude Code 版本 <= 2.1.107
+claude-code-cn status
+
 # 汉化当前安装的 Claude Code
 claude-code-cn patch
 
 # 还原为英文原版
 claude-code-cn restore
-
-# 查看汉化状态
-claude-code-cn status
 ```
 
 ## 工作原理
@@ -48,6 +58,7 @@ claude-code-cn extract
 
 ## 注意事项
 
+- **仅支持 Claude Code <= v2.1.107**（v2.1.108+ 已改为原生二进制，无法补丁）
 - 汉化会修改全局安装的 Claude Code 文件，`restore` 可随时还原
 - 全局 `node_modules` 目录可能需要管理员/sudo 权限
 - 当前仅翻译 P0 级别的核心 UI 文本，不涉及逻辑判断中的字符串，不会影响功能
